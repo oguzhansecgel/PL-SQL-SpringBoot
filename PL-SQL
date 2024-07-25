@@ -1,0 +1,36 @@
+CREATE OR REPLACE function add_student (
+  p_id_no IN STUDENTS.STUDENT_ID%TYPE,
+  p_name IN STUDENTS.NAME%TYPE
+) RETURN VARCHAR2
+IS
+BEGIN
+  -- Veri ekleme işlemi
+  INSERT INTO STUDENTS (STUDENT_ID, NAME)
+  VALUES (p_id_no, p_name);
+ RETURN 'Student added successfully!';
+END;
+/
+
+
+CREATE OR REPLACE function update_student (
+  p_id_no IN STUDENTS.STUDENT_ID%TYPE,
+  p_name IN STUDENTS.NAME%TYPE
+) RETURN VARCHAR2
+IS
+BEGIN
+  -- Veri güncelleme işlemi
+  UPDATE STUDENTS
+  SET NAME = p_name
+  WHERE STUDENT_ID = p_id_no;
+
+  -- Kontrol: Güncellenen satır sayısı kontrolü
+  IF SQL%ROWCOUNT = 0 THEN
+    RETURN 'No student found with the given ID!';
+  ELSE
+    RETURN 'Student updated successfully!';
+  END IF;
+END;
+/
+
+
+
