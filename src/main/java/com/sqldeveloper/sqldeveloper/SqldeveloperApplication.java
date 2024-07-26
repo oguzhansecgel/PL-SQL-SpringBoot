@@ -1,6 +1,8 @@
 package com.sqldeveloper.sqldeveloper;
 
+import com.sqldeveloper.sqldeveloper.entitiy.Product;
 import com.sqldeveloper.sqldeveloper.entitiy.Student;
+import com.sqldeveloper.sqldeveloper.repository.ProductRepository;
 import com.sqldeveloper.sqldeveloper.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +16,10 @@ public class SqldeveloperApplication implements CommandLineRunner {
 
 	@Autowired
 	private StudentRepository repository;
+	@Autowired
+	private ProductRepository pRepository;
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(SqldeveloperApplication.class, args);
 	}
@@ -22,7 +28,8 @@ public class SqldeveloperApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		List<Student> students = repository.findAll();
-
+		List<Product> products = pRepository.findAll();
 		students.forEach(System.out::println);
+		products.forEach(System.out::println);
 	}
 }

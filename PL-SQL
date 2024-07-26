@@ -11,7 +11,7 @@ BEGIN
 END;
 /
 
-
+-------------------------------------------------------------------------
 CREATE OR REPLACE function update_student (
   p_id_no IN STUDENTS.STUDENT_ID%TYPE,
   p_name IN STUDENTS.NAME%TYPE
@@ -33,4 +33,17 @@ END;
 /
 
 
+-------------------------------------------------------------------------
+CREATE OR REPLACE function avg_price_product
+RETURN NUMBER
+IS
+    v_avg_price NUMBER;
+BEGIN
+    -- Ortalama fiyatı hesapla
+    SELECT AVG(PRICE) INTO v_avg_price
+    FROM PRODUCTS;
 
+    -- Hesaplanan ortalama fiyatı döndür
+    RETURN v_avg_price;
+END;
+/
